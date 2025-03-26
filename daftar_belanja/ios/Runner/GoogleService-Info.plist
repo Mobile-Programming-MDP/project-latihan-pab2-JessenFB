@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyBQwjAqgU-6BvOGSW0nhFL3w1p5FT1vd70</string>
+	<key>GCM_SENDER_ID</key>
+	<string>716327839046</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.daftarBelanja</string>
+	<key>PROJECT_ID</key>
+	<string>our-ratio-402112</string>
+	<key>STORAGE_BUCKET</key>
+	<string>our-ratio-402112.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:716327839046:ios:3e9c5eb1b636cb9473b147</string>
+	<key>DATABASE_URL</key>
+	<string>https://our-ratio-402112-default-rtdb.asia-southeast1.firebasedatabase.app</string>
+</dict>
+</plist>
