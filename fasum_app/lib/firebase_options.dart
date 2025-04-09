@@ -90,4 +90,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'tugas1-1d221.firebasestorage.app',
     measurementId: 'G-HW7GLCFPTK',
   );
+
 }
