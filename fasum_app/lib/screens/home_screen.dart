@@ -97,28 +97,27 @@ class HomeScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            fullName,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),
-                          ),
-                          const SizedBox(height: 5),
-                          Text(
                             formatTime(createdAt),
                             style: const TextStyle(
                               fontSize: 12,
                               color: Colors.grey,
                             ),
                           ),
-                          const SizedBox(height: 10),
-                          if (description != null)
-                            Text(
-                              description,
-                              style: const TextStyle(fontSize: 14),
+                          Text(
+                            fullName,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
                             ),
+                          ),
+                          const SizedBox(height: 6),
                         ],
                       ),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      description ?? '',
+                      style: const TextStyle(fontSize: 16),
                     ),
                   ],
                 ),
