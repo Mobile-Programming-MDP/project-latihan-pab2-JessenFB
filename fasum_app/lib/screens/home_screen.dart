@@ -192,6 +192,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             fullName: fullName,
                             latitude: latitude,
                             longitude: longitude,
+                            category: category,
                             heroTag: heroTag,
                           ),
                     ),
