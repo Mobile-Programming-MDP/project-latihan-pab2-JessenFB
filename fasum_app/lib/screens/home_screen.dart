@@ -27,9 +27,67 @@ class HomeScreen extends StatelessWidget {
 
   Future<void> signOut(BuildContext context) async {
     await FirebaseAuth.instance.signOut();
+    if (!mounted) return;
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(builder: (context) => const SignInScreen()),
     );
+  }
+
+  void _showCategoryFilter() async {
+    final result = await showModalBottomSheet<String?>(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (context) {
+        return SafeArea(
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height * 0.75,
+            child: ListView(
+              padding: const EdgeInsets.only(bottom: 24),
+              children: [
+                ListTile(
+                  leading: const Icon(Icons.clear),
+                  title: const Text('Semua Kategori'),
+                  onTap:
+                      () => Navigator.pop(
+                        context,
+                        null,
+                      ), // Null untuk memilih semua kategori
+                ),
+                const Divider(),
+                ...categories.map(
+                  (category) => ListTile(
+                    title: Text(category),
+                    trailing:
+                        selectedCategory == category
+                            ? Icon(
+                              Icons.check,
+                              color: Theme.of(context).colorScheme.primary,
+                            )
+                            : null,
+                    onTap: () => Navigator.pop(context, category),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+    if (result != null) {
+      setState(() {
+        selectedCategory =
+            result; // Set kategori yang dipilih atau null untuk Semua Kategori
+      });
+    } else {
+      // Jika result adalah null, berarti memilih Semua Kategori
+      setState(() {
+        selectedCategory =
+            null; // Reset ke null untuk menampilkan semua kategori
+      });
+    }
   }
 
   @override
