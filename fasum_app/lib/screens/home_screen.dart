@@ -5,12 +5,38 @@ import 'package:fasum_app/screens/add_post_screen.dart';
 import 'package:fasum_app/screens/detail_screen.dart';
 import 'package:fasum_app/screens/sign_in_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  String? selectedCategory;
+  List<String> categories = [
+    'Jalan Rusak',
+    'Marka Pudar',
+    'Lampu Mati',
+    'Trotoar Rusak',
+    'Rambu Rusak',
+    'Jembatan Rusak',
+    'Sampah Menumpuk',
+    'Saluran Tersumbat',
+    'Sungai Tercemar',
+    'Sampah Sungai',
+    'Pohon Tumbang',
+    'Taman Rusak',
+    'Fasilitas Rusak',
+    'Pipa Bocor',
+    'Vandalisme',
+    'Banjir',
+    'Lainnya',
+  ];
   String formatTime(DateTime dateTime) {
     final now = DateTime.now();
     final diff = now.difference(dateTime);
@@ -25,7 +51,7 @@ class HomeScreen extends StatelessWidget {
     }
   }
 
-  Future<void> signOut(BuildContext context) async {
+  Future<void> signOut() async {
     await FirebaseAuth.instance.signOut();
     if (!mounted) return;
     Navigator.of(context).pushReplacement(
@@ -98,8 +124,12 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         actions: [
           IconButton(
+            onPressed: _showCategoryFilter,
+            icon: const Icon(Icons.filter_list),
+          ),
+          IconButton(
             onPressed: () {
-              signOut(context);
+              signOut();
             },
             icon: const Icon(Icons.logout),
           ),
@@ -112,24 +142,41 @@ class HomeScreen extends StatelessWidget {
                 .orderBy('createdAt', descending: true)
                 .snapshots(),
         builder: (context, snapshot) {
-          if (!snapshot.hasData)
+          if (!snapshot.hasData) {
             return const Center(child: CircularProgressIndicator());
-
-          final posts = snapshot.data!.docs;
-
-          //Script lengkap bagian ListView.builder
-          //https://pastebin.com/kSXM5mTX
+          }
+          final posts =
+              snapshot.data!.docs.where((doc) {
+                final data = doc.data();
+                final category = data['category'] ?? 'Lainnya';
+                return selectedCategory == null || selectedCategory == category;
+              }).toList();
+          if (posts.isEmpty) {
+            return const Center(
+              child: Text('Tidak ada laporan untuk kategori ini!'),
+            );
+          }
           return ListView.builder(
             itemCount: posts.length,
             itemBuilder: (context, index) {
               final data = posts[index].data();
               final imageBase64 = data['image'];
               final description = data['description'];
-              final createdAtStr = data['createdAt'];
               final fullName = data['fullName'] ?? 'Anonim';
+              final latitude = data['latitude'] ?? 0.0;
+              final longitude = data['longitude'] ?? 0.0;
+              final category = data['category'] ?? 'Lainnya';
 
-              //parse ke DateTime
-              final createdAt = DateTime.parse(createdAtStr);
+              DateTime createdAt;
+              final createdAtValue = data['createdAt'];
+
+              if (createdAtValue is Timestamp) {
+                createdAt = createdAtValue.toDate();
+              } else if (createdAtValue is String) {
+                createdAt = DateTime.parse(createdAtValue);
+              } else {
+                createdAt = DateTime.now();
+              }
               String heroTag =
                   'fasum-image-${createdAt.millisecondsSinceEpoch}';
               return InkWell(
@@ -143,9 +190,8 @@ class HomeScreen extends StatelessWidget {
                             description: description,
                             createdAt: createdAt,
                             fullName: fullName,
-                            latitude: 0.0,
-                            longitude: 0.0,
-                            category: "Jalan Rusak",
+                            latitude: latitude,
+                            longitude: longitude,
                             heroTag: heroTag,
                           ),
                     ),
