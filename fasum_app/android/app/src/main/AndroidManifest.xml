@@ -1,14 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <user-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <user-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     
-    <user-permission android:name="android.permission.POST_NOTIFICATIONS"/>
-    <user-permission android:name="android.permission.VIBRATE"/>
-    <user-permission android:name="android.permission.INTERNET"/>
-    <user-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
-        android:label="fasum_app"
+        android:label="fasum"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
