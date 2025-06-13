@@ -1,0 +1,2 @@
+D:/PAB2SI61/project-latihan-pab2-nurrachmat-nr-1/fasum/android/app/.cxx/Debug/2g2u3f2b/arm64-v8a/CMakeFiles/edit_cache.dir
+D:/PAB2SI61/project-latihan-pab2-nurrachmat-nr-1/fasum/android/app/.cxx/Debug/2g2u3f2b/arm64-v8a/CMakeFiles/rebuild_cache.dir

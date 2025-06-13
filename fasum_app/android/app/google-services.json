@@ -1,22 +1,22 @@
 {
   "project_info": {
-    "project_number": "1083530908092",
-    "firebase_url": "https://tugas1-1d221-default-rtdb.firebaseio.com",
-    "project_id": "tugas1-1d221",
-    "storage_bucket": "tugas1-1d221.firebasestorage.app"
+    "project_number": "297417949941",
+    "firebase_url": "https://fasum-j-default-rtdb.firebaseio.com",
+    "project_id": "fasum-j",
+    "storage_bucket": "fasum-j.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1083530908092:android:8a535b5ff7cb83be175bb9",
+        "mobilesdk_app_id": "1:297417949941:android:a890c1698a91914920bbbc",
         "android_client_info": {
-          "package_name": "com.example.fasum_app"
+          "package_name": "com.example.fasum"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyC-VT7JdQ53tHvespo49RoAKBNMwYoLh6A"
+          "current_key": "AIzaSyCGwtTC4MDmcLyI-H55ucEOc2w9jGzM37A"
         }
       ],
       "services": {
